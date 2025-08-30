@@ -1,3 +1,4 @@
+import 'package:chatbot/screen/onboarding_screen.dart';
 import 'package:chatbot/widget/custom_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:chatbot/screen/home_screen.dart';
@@ -19,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // Navigate to HomeScreen after 4 seconds
     Future.delayed(const Duration(seconds: 4), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const HomeScreen())
+        MaterialPageRoute(builder: (_) => const OnboardingScreen())
       );
     });
   }

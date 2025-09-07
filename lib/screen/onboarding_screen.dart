@@ -1,4 +1,6 @@
 import 'package:chatbot/helper/global.dart';
+import 'package:chatbot/model/onbord.dart';
+import 'package:chatbot/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -7,15 +9,51 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final c = PageController( );
+
+    final list = [
+      
+    Onbord(
+    //onboarding 1  
+    title: 'Ask me Anything ', 
+    subtitle: 'I can be your best Firend & you can ask anything & I can help you !', 
+    lottie: 'askme'
+    ),
+     
+   Onbord(
+    // Onboarding for Pharmai
+    title: 'Welcome to PharmAi',
+    subtitle: 'Your smart healthcare companion. Get instant medicine info, dosage guidance, and health support anytime!',
+    lottie: 'pharmAi',
+    
+   ),
+   
+    ];
+
     return Scaffold(
 
-      body: Column(children: [
+      body: PageView.builder(
+        
+        controller: c,
 
-        Lottie.asset('assets/lottie/askme.json' , height: mq.height * .7),
+        itemCount: list.length,
+        itemBuilder: (ctx, ind) {
+
+        final isLast = ind == list.length-1;  
+          
+        return Column(children: [
+
+        Lottie.asset('assets/lottie/${list[ind].lottie}.json' , 
+        height: mq.height * .6 , width: isLast ? mq.width* .7 : null),
 
         //title
-        const Text('Ask me Anything !' , 
-        style: TextStyle(fontSize: 18 , fontWeight: FontWeight.w900 , letterSpacing: .5),
+        Text(
+        list[ind].title,  
+        style: const TextStyle(
+          fontSize: 18 , 
+          fontWeight: FontWeight.w900 , 
+          letterSpacing: .5),
         ),
 
         SizedBox(height: mq.height * .015),
@@ -33,14 +71,15 @@ class OnboardingScreen extends StatelessWidget {
         Wrap(
           spacing: 10,
           children:List.generate(
-          2, 
+          list.length, 
           (i) => 
           Container(
-            width: 10,
+            width: i == ind ? 15: 10,
             height: 8,
-            decoration: const BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.all(Radius.circular(5))),
+            decoration: BoxDecoration(
+              color: i == ind ?Colors.blue: Colors.grey,
+              borderRadius: 
+               const BorderRadius.all(Radius.circular(5))),
             )) ,
             ),
 
@@ -58,14 +97,31 @@ class OnboardingScreen extends StatelessWidget {
               const TextStyle(fontSize: 16,fontWeight: FontWeight.w500),
               
               minimumSize: Size(mq.width *.4, 50)),
-              onPressed: () {}, 
-              child: const Text('Next')),
+              onPressed: () {
+
+                if(isLast){
+
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (_) => HomeScreen()));
+
+
+                }else{
+                  c.nextPage(duration: Duration(milliseconds:600 ), 
+                  curve: Curves.ease);
+                }
+
+              }, 
+              child:  Text( isLast ? 'Finish' :'Next')),
             
             const Spacer(flex: 2),        
               
       ],
-      ),
+      );
+        
+      },
+      )
 
     );
   }
 }
+

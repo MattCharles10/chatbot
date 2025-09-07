@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:chatbot/screen/home_screen.dart';
 import 'package:lottie/lottie.dart';
 import '../helper/global.dart';
+import '../helper/pref.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -20,8 +21,9 @@ class _SplashScreenState extends State<SplashScreen> {
     // Navigate to HomeScreen after 4 seconds
     Future.delayed(const Duration(seconds: 4), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const OnboardingScreen())
-      );
+        MaterialPageRoute(builder: (_) => pref.showOnboarding 
+        ? const OnboardingScreen() 
+        : const HomeScreen()));
     });
   }
 

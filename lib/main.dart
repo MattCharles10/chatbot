@@ -1,10 +1,15 @@
 import 'package:chatbot/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'helper/pref.dart';
 
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // init
+  pref.initialize();
+
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   await SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitUp,DeviceOrientation.portraitDown]);

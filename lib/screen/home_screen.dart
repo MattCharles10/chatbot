@@ -1,4 +1,5 @@
 import 'package:chatbot/helper/global.dart';
+import 'package:chatbot/helper/pref.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // This sets the system UI (status bar, navigation bar) to be edge-to-edge.
     // It's a platform-specific setting for a full-screen appearance.
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    pref.showOnboarding = false ;
   }
 
   @override

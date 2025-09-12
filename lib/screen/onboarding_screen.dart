@@ -2,6 +2,7 @@ import 'package:chatbot/helper/global.dart';
 import 'package:chatbot/model/onbord.dart';
 import 'package:chatbot/screen/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -101,8 +102,9 @@ class OnboardingScreen extends StatelessWidget {
 
                 if(isLast){
 
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (_) => HomeScreen()));
+                   Get.off(() => const HomeScreen()); 
+                  //Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    //builder: (_) => HomeScreen()));
 
 
                 }else{

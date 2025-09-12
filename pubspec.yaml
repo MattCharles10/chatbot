@@ -26,7 +26,8 @@ dependencies:
   #
   path_provider: ^2.1.0
 
-#
+  #state mangement
+  get: ^4.7.2
 
 
   
@@ -38,6 +39,9 @@ dev_dependencies:
     sdk: flutter
     #
   flutter_native_splash: ^2.4.6
+
+  #
+  rename_app: ^1.6.5
 
   
  
@@ -54,5 +58,7 @@ flutter:
     - assets/lottie/robo.json
     - assets/lottie/askme.json
     - assets/lottie/pharmAi.json
-
+    - assets/lottie/ai_hand.json
+    - assets/lottie/drugrem.json
+    - assets/lottie/druginfo.json
     

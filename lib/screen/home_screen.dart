@@ -1,5 +1,7 @@
 import 'package:chatbot/helper/global.dart';
 import 'package:chatbot/helper/pref.dart';
+import 'package:chatbot/model/home_type.dart';
+import 'package:chatbot/widget/home_card.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -37,24 +39,30 @@ class _HomeScreenState extends State<HomeScreen> {
     mq = MediaQuery.sizeOf(context);
 
     return Scaffold(
-      backgroundColor: Colors.blueGrey.shade50, // Added a light background color to the Scaffold
-      // A safe area ensures content doesn't overlap with system UI elements like notches or dynamic islands.
-      body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0), // Slightly increased horizontal padding
-            child: Text(
-              'Welcome to your Chatbot Home! 🎉', // Slightly changed text for context
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: mq.width * 0.065, // Slightly larger responsive font size
-                fontWeight: FontWeight.w700, // Bolder text
-                color: const Color.fromARGB(255, 58, 75, 84), // Darker text color matching theme
-                height: 1.5, // Line height for better readability
-              ),
-            ),
-          ),
+
+      appBar: AppBar(
+
+        elevation: 1,
+        centerTitle: true ,
+        backgroundColor: Colors.white,
+        title: const Text(
+         appName,
+         style: TextStyle(
+          color: Colors.blue,fontSize:20 ,fontWeight: FontWeight.w500),
         ),
+
+        //
+       actions: [
+        IconButton(onPressed: (){}, 
+        icon:Icon(
+          Icons.brightness_4_rounded , 
+          color: Colors.blue, size:26) )],
+
+      ),
+
+      body: ListView(
+        padding: EdgeInsets.symmetric(horizontal: mq.width * .04 , vertical: mq.height * .01),
+        children: HomeType.values.map((e) => HomeCard(homeType: e ,)).toList(),
       ),
     );
   }
